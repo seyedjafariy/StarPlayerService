@@ -1,8 +1,7 @@
-package com.sajjady.starplayerservice.GetMusic.Interface
+package com.sajjady.starplayerservice.Common.GetMusic.Interface
 
-import com.sajjady.starplayerservice.Model.MusicModel
+import com.sajjady.starplayerservice.Common.Model.MusicModel
 import org.springframework.http.ResponseEntity
-import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 
