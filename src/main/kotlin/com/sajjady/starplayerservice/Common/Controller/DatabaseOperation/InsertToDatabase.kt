@@ -1,3 +1,0 @@
-package com.sajjady.starplayerservice.Common.Controller.DatabaseOperation
-
-abstract class InsertToDatabase

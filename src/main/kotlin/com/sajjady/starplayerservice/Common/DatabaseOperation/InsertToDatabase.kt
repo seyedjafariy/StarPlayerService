@@ -1,0 +1,3 @@
+package com.sajjady.starplayerservice.Common.DatabaseOperation
+
+abstract class InsertToDatabase

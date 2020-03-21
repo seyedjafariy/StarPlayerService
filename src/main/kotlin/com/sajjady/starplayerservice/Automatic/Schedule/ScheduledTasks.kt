@@ -1,34 +1,35 @@
 package com.sajjady.starplayerservice.Automatic.Schedule
 
-import com.sajjady.starplayerservice.Automatic.General.IDoAfterFinish
-import com.sajjady.starplayerservice.Automatic.General.IDoAfterNavigating
-import com.sajjady.starplayerservice.Automatic.General.IPageNavigator
-import com.sajjady.starplayerservice.Common.Controller.Dao.MusicScheduleModelDao
-import com.sajjady.starplayerservice.Automatic.WebPageNavigation.*
-import org.springframework.beans.factory.annotation.Autowired
+import com.sajjady.starplayerservice.Automatic.General.PlannedOperation
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import java.text.SimpleDateFormat
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired
 import java.util.*
 
 @Component
-class ScheduledTasks(@Autowired val musicScheduleDao: MusicScheduleModelDao) {
+class ScheduledTasks {
 
+
+    @Autowired
+    lateinit var plannedOperation: PlannedOperation
 
     private val log: Logger = LoggerFactory.getLogger(ScheduledTasks::class.java)
 
     private val dateFormat = SimpleDateFormat("HH:mm:ss")
 
-    @Scheduled(fixedRate = 120000)
+    @Scheduled(fixedRate = 1200000)
     fun getMusicsBySchedule() {
         log.info("The time is now {}", dateFormat.format(Date()))
-        val pageNavigator: IPageNavigator = PageNavigator()
+        plannedOperation.startOperation()
+
+        /* val pageNavigator: IPageNavigator = PageNavigator()
         pageNavigator.start()
         pageNavigator.doAfterNavi = object : IDoAfterNavigating {
-            override fun doAfterNavigate(): Boolean {
+            override fun doAfterNavigate(t: String?): Boolean {
                 println("a stage is done")
                 return true
             }
@@ -37,7 +38,7 @@ class ScheduledTasks(@Autowired val musicScheduleDao: MusicScheduleModelDao) {
             override fun doAfterFinish() {
                 println("is finished")
             }
-        }
+        }*/
 
 
         /*val flux = Flux.create<String> { t: FluxSink<String>? ->

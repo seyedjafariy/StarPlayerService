@@ -1,4 +1,4 @@
-package com.sajjady.starplayerservice.Common.Controller.DatabaseOperation.ReadPages
+package com.sajjady.starplayerservice.Common.DatabaseOperation.ReadPages
 
 import org.springframework.http.ResponseEntity
 import java.util.concurrent.CompletableFuture

@@ -2,10 +2,10 @@ package com.sajjady.starplayerservice.Common.Model
 
 
 interface BrowsingCapabilities {
-    var id: Int
-    val website: String
-    val etc: String?
-    val page: Number?
-    val musicLink: String
-    val artist: String
+    var id: Int?
+    var page: Number?
+    var cover: String
+    var name:String
+    var musicLink: String
+    var artist: String
 }

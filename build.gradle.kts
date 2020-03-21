@@ -19,12 +19,15 @@ group = "com.sajjady"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_13
 
+
 val developmentOnly by configurations.creating
 configurations {
     runtimeClasspath {
         extendsFrom(developmentOnly)
     }
 }
+
+
 
 repositories {
     mavenCentral()
@@ -42,7 +45,8 @@ dependencies {
     // reactor
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.0.2.RELEASE")
     implementation("io.projectreactor.addons:reactor-adapter:3.3.2.RELEASE")
-
+    // jsoup
+    implementation("org.jsoup:jsoup:1.13.1")
     // import BOM
     implementation(platform("io.projectreactor:reactor-bom:Dysprosium-SR5"))
     // add dependencies without a version number

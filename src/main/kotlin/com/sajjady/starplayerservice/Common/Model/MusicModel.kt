@@ -1,3 +1,4 @@
+/*
 package com.sajjady.starplayerservice.Common.Model
 
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -13,9 +14,11 @@ data class MusicModel(
 ) {
     @Table(name = "data")
     @Entity(name = "data")
-    /*@SecondaryTables(
+    */
+/*@SecondaryTables(
             SecondaryTable(name = "album", pkJoinColumns = [PrimaryKeyJoinColumn(name = "id")]),
-            SecondaryTable(name = "artist", pkJoinColumns = [PrimaryKeyJoinColumn(name = "id")]))*/
+            SecondaryTable(name = "artist", pkJoinColumns = [PrimaryKeyJoinColumn(name = "id")]))*//*
+
     data class Data(
             @JsonProperty("id")
             @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,4 +85,4 @@ data class MusicModel(
 
         }
     }
-}
+}*/

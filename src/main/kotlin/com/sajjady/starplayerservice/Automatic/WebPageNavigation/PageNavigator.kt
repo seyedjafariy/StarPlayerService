@@ -3,8 +3,9 @@ package com.sajjady.starplayerservice.Automatic.WebPageNavigation
 import com.sajjady.starplayerservice.Automatic.General.IDoAfterFinish
 import com.sajjady.starplayerservice.Automatic.General.IDoAfterNavigating
 import com.sajjady.starplayerservice.Automatic.General.IPageNavigator
-import com.sajjady.starplayerservice.Common.Controller.DatabaseOperation.ReadPages.GetLastPageEntityInfo
-import com.sajjady.starplayerservice.Common.Controller.DatabaseOperation.ReadPages.IGetLastPageEntityInfo
+import com.sajjady.starplayerservice.Common.DatabaseOperation.ReadPages.GetLastPageEntityInfo
+import com.sajjady.starplayerservice.Common.DatabaseOperation.ReadPages.IGetLastPageEntityInfo
+import com.sajjady.starplayerservice.Common.Model.WebPageModel
 import org.reactivestreams.Subscriber
 import org.reactivestreams.Subscription
 import reactor.core.publisher.Flux
@@ -15,20 +16,24 @@ class PageNavigator : IPageNavigator {
     override var doWhenFinish: IDoAfterFinish? = null
 
     override fun start() {
-        val flux = Flux.create<String> { fs: FluxSink<String>? ->
+        val flux = Flux.create<WebPageModel> { fs: FluxSink<WebPageModel>? ->
             var pageNumber = 0
             fs!!.onRequest {
-                val reqPageNumber = (++pageNumber).toString()
+                val reqPageNumber = "page-${++pageNumber}"
                 val lastPageEntity: IGetLastPageEntityInfo = GetLastPageEntityInfo()
                 lastPageEntity.getLastPageEntityInfo(reqPageNumber).whenCompleteAsync { t, u ->
-                    fs.next(t.body.toString())
+                    fs.next(WebPageModel(contents = t.body.toString(),
+                            pageNumber = pageNumber,
+                            place = "browse",
+                            website = "mrTehran"
+                    ))
                 }
             }.onCancel {
                 fs.complete()
             }
         }
 
-        flux.subscribeWith(object : Subscriber<String> {
+        flux.subscribeWith(object : Subscriber<WebPageModel> {
             lateinit var subscription: Subscription
 
             override fun onComplete() {
@@ -40,11 +45,12 @@ class PageNavigator : IPageNavigator {
                 s.request(1)
             }
 
-            override fun onNext(t: String?) {
+            override fun onNext(t: WebPageModel) {
                 println("next is emitted")
-                if (doAfterNavi!!.doAfterNavigate())
+                if (doAfterNavi!!.doAfterNavigate(t)) {
                     subscription.request(1)
-                else
+                    println("is executed in onnext")
+                } else
                     subscription.cancel()
             }
 

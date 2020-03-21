@@ -1,4 +1,4 @@
-package com.sajjady.starplayerservice.Common.Controller.DatabaseOperation.Interface
+package com.sajjady.starplayerservice.Common.DatabaseOperation.Interface
 
 interface IInsertScheduleMusicToDatabase {
     public fun IInsertScheduleMusicToDatabase(musicData: String)

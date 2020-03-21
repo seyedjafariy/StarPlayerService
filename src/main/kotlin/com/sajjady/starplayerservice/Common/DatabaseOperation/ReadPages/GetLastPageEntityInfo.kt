@@ -1,4 +1,4 @@
-package com.sajjady.starplayerservice.Common.Controller.DatabaseOperation.ReadPages
+package com.sajjady.starplayerservice.Common.DatabaseOperation.ReadPages
 
 import com.sajjady.starplayerservice.Common.GetMusic.GetMusicData
 import org.springframework.http.ResponseEntity
