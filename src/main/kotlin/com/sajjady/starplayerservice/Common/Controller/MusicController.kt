@@ -1,7 +1,11 @@
 package com.sajjady.starplayerservice.Common.Controller
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.sajjady.starplayerservice.Common.Dao.MusicScheduleModelDao
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Sort
 import org.springframework.util.ResourceUtils
@@ -19,9 +23,13 @@ class MusicController {
     lateinit var musicScheduleModelDao: MusicScheduleModelDao
 
     @ResponseBody
-    @GetMapping(path = ["/api/request/byName"])
+    @GetMapping(path = ["/api/request"])
     fun searchMusic(@RequestParam(required = false, defaultValue = "null") musicName: String?, @RequestParam(required = false, defaultValue = "null") artist: String?): String?/*CompletableFuture<ResponseEntity<MusicModel>>*/ {
-        return musicScheduleModelDao.queryFromDatabase(artist = artist?.isNullValue(), musicName = musicName?.isNullValue()).toString()
+        val mapper = jacksonObjectMapper()
+
+        val result = musicScheduleModelDao.queryFromDatabase(artist = artist?.isNullValue(), musicName = musicName?.isNullValue())
+
+        return mapper.writeValueAsString(result)
     }
 
     private fun String.isNullValue(): String? {
@@ -30,5 +38,16 @@ class MusicController {
         else
             this
     }
+
+    @ResponseBody
+    @GetMapping(path = ["/api/paging"])
+    public fun pagingRequest(@RequestParam(required = false, defaultValue = "50") count: Int,
+                             @RequestParam(required = false, defaultValue = "1") page: Int): String {
+        val pageable = PageRequest.of(page, count)
+        val result = musicScheduleModelDao.findAll(pageable).toMutableList()
+        val mapper = jacksonObjectMapper()
+        return mapper.writeValueAsString(result)
+    }
+
 
 }

@@ -53,6 +53,8 @@ dependencies {
     implementation("io.projectreactor:reactor-core")
     implementation("io.projectreactor.addons:reactor-extra")
 
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.+")
+
 
     // used for networking
     compileOnly("org.projectlombok:lombok")
@@ -68,6 +70,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
+
 }
 
 tasks.withType<Test> {
