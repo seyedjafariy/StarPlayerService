@@ -3,8 +3,8 @@ package com.sajjady.starplayerservice.Automatic.WebPageNavigation
 import com.sajjady.starplayerservice.Automatic.General.IDoAfterFinish
 import com.sajjady.starplayerservice.Automatic.General.IDoAfterNavigating
 import com.sajjady.starplayerservice.Automatic.General.IPageNavigator
-import com.sajjady.starplayerservice.Common.DatabaseOperation.ReadPages.GetLastPageEntityInfo
-import com.sajjady.starplayerservice.Common.DatabaseOperation.ReadPages.IGetLastPageEntityInfo
+import com.sajjady.starplayerservice.Automatic.ReadPages.GetLastPageEntityInfo
+import com.sajjady.starplayerservice.Automatic.ReadPages.IGetLastPageEntityInfo
 import com.sajjady.starplayerservice.Common.Model.WebPageModel
 import org.reactivestreams.Subscriber
 import org.reactivestreams.Subscription

@@ -13,7 +13,6 @@ import java.util.*
 @Component
 class ScheduledTasks {
 
-
     @Autowired
     lateinit var plannedOperation: PlannedOperation
 
@@ -25,68 +24,8 @@ class ScheduledTasks {
     fun getMusicsBySchedule() {
         log.info("The time is now {}", dateFormat.format(Date()))
         plannedOperation.startOperation()
-
-        /* val pageNavigator: IPageNavigator = PageNavigator()
-        pageNavigator.start()
-        pageNavigator.doAfterNavi = object : IDoAfterNavigating {
-            override fun doAfterNavigate(t: String?): Boolean {
-                println("a stage is done")
-                return true
-            }
-        }
-        pageNavigator.doWhenFinish = object : IDoAfterFinish {
-            override fun doAfterFinish() {
-                println("is finished")
-            }
-        }*/
-
-
-        /*val flux = Flux.create<String> { t: FluxSink<String>? ->
-            t!!.onRequest {
-                t.next("sajjad")
-            }
-        }
-
-        flux.subscribeWith(object : Subscriber<String> {
-            override fun onComplete() {
-
-            }
-
-            override fun onSubscribe(s: Subscription?) {
-
-            }
-
-            override fun onNext(t: String?) {
-            }
-
-            override fun onError(t: Throwable?) {
-
-            }
-
-        })
-
-
-        flux.doOnNext {
-            printlprn(it)
-        }.map { t ->
-            t.length
-        }.doOnSubscribe { t: Subscription? ->
-            t!!.request(50)
-
-        }.doOnComplete {
-
-        }.subscribe().dispose()
-
-*/
     }
 }
-
-
-/*private fun insertMusicToDatabase(value: List<MusicModel.Data?>?) {
-        val musicModel = MusicModel()
-        musicScheduleDao.saveAll(musicModel.data!!.toMutableList())
-    }*/
-
 
 
 
