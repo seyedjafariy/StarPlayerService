@@ -20,7 +20,7 @@ class ScheduledTasks {
 
     private val dateFormat = SimpleDateFormat("HH:mm:ss")
 
-    @Scheduled(fixedRate = 1200000)
+    @Scheduled(cron = "0 3 0 * * ?")
     fun getMusicsBySchedule() {
         log.info("The time is now {}", dateFormat.format(Date()))
         plannedOperation.startOperation()
