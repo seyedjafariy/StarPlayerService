@@ -50,7 +50,7 @@ class MusicController {
     }
 
     @ResponseBody
-    @GetMapping(path = [""])
+    @GetMapping(path = ["/"])
     public fun pingRequest(): String {
         return "ping"
     }
