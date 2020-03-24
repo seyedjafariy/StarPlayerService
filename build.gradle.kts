@@ -62,7 +62,7 @@ dependencies {
     testImplementation("io.projectreactor:reactor-test")
     // database connection
     // runtimeOnly("com.h2database:h2")
-    implementation("com.github.jsimone:webapp-runner:8.5.11.3")
+   // implementation("com.github.jsimone:webapp-runner:8.5.11.3")
 
 
     runtimeOnly("mysql:mysql-connector-java")
@@ -96,7 +96,8 @@ task("stage") {
 
 tasks.war.get().setMustRunAfter*/
 
-tasks.create("stage").doLast {
+/*
+tasks.get.doLast {
     delete {
         fileTree("build/distributions")
     }
@@ -112,3 +113,4 @@ tasks.create("stage").doLast {
         }
     }
 }
+*/
