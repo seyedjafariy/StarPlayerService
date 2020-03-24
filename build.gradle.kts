@@ -62,6 +62,7 @@ dependencies {
     testImplementation("io.projectreactor:reactor-test")
     // database connection
     // runtimeOnly("com.h2database:h2")
+    implementation("com.github.jsimone:webapp-runner:8.5.11.3")
 
 
     runtimeOnly("mysql:mysql-connector-java")
@@ -81,5 +82,33 @@ tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "1.8"
+    }
+}
+/*
+
+tasks.register("clean", Delete::class) {
+    delete(rootProject.buildDir)
+}
+
+task("stage") {
+    dependsOn("clean", war)
+}
+
+tasks.war.get().setMustRunAfter*/
+
+tasks.getByName("stage").doLast {
+    delete {
+        fileTree("build/distributions")
+    }
+    delete {
+        fileTree("build/assetCompile")
+    }
+    delete {
+        fileTree("build/distributions")
+    }
+    delete {
+        fileTree("build/libs") {
+            exclude("*.war")
+        }
     }
 }
