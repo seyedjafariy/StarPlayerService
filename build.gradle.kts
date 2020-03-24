@@ -96,7 +96,7 @@ task("stage") {
 
 tasks.war.get().setMustRunAfter*/
 
-tasks.getByName("stage").doLast {
+tasks.create("stage").doLast {
     delete {
         fileTree("build/distributions")
     }
