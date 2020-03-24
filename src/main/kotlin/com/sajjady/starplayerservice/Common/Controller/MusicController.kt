@@ -49,5 +49,11 @@ class MusicController {
         return mapper.writeValueAsString(result)
     }
 
+    @ResponseBody
+    @GetMapping(path = [""])
+    public fun pingRequest(): String {
+        return "ping"
+    }
+
 
 }

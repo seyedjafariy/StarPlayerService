@@ -2,7 +2,7 @@ package com.sajjady.starplayerservice.Common.Model
 
 import javax.persistence.*
 
-@Table(name = "musics_info", uniqueConstraints = [UniqueConstraint(name = "UNIQUE_LINK", columnNames = ["musicLink"])] )
+@Table(name = "musics_info", uniqueConstraints = [UniqueConstraint(name = "UNIQUE_LINK", columnNames = ["musicLink"])])
 @Entity(name = "music_info")
 public data class MusicBrowsingSpecs(
         @Id
