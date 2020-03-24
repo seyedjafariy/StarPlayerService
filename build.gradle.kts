@@ -64,7 +64,6 @@ dependencies {
     // runtimeOnly("com.h2database:h2")
    // implementation("com.github.jsimone:webapp-runner:8.5.11.3")
 
-
     runtimeOnly("mysql:mysql-connector-java")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
