@@ -1,0 +1,1 @@
+java -Dserver.port=48031 $JAVA_OPTS -jar build/libs/*.jar
