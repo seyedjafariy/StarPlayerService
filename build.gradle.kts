@@ -5,6 +5,8 @@ plugins {
     id("io.spring.dependency-management") version "1.0.9.RELEASE"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.3.61"
     war
+    java
+    application
     kotlin("jvm") version "1.3.61"
     kotlin("plugin.spring") version "1.3.61"
     kotlin("plugin.jpa") version "1.3.61"
@@ -88,6 +90,7 @@ tasks.withType<KotlinCompile> {
     delete(rootProject.buildDir)
 }*/
 
+/*
 task("stage") {
     dependsOn("clean", war)
 }
@@ -101,6 +104,7 @@ tasks.register("copyToLib", Copy::class.java) {
     }
 }
 tasks.findByName("stage")!!.dependsOn("copyToLib")
+*/
 
 /*tasks["stage"].doLast {
     delete {
