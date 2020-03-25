@@ -1,1 +1,1 @@
-web: ./build/libs/starplayerservice-0.0.1-SNAPSHOT.war
+java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/*.jar
