@@ -17,6 +17,7 @@ abstract class GetMusicData {
         pair.forEach {
             args.add(it.first, it.second)
         }
+
         return get().uri { uriBuilder: UriBuilder? ->
             if (args.isNotEmpty())
                 uriBuilder!!.queryParams(args)
