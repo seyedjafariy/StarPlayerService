@@ -62,7 +62,7 @@ dependencies {
     testImplementation("io.projectreactor:reactor-test")
     // database connection
     // runtimeOnly("com.h2database:h2")
-   // implementation("com.github.jsimone:webapp-runner:8.5.11.3")
+    // implementation("com.github.jsimone:webapp-runner:8.5.11.3")
 
     runtimeOnly("mysql:mysql-connector-java")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -83,20 +83,26 @@ tasks.withType<KotlinCompile> {
         jvmTarget = "1.8"
     }
 }
-/*
 
-tasks.register("clean", Delete::class) {
+/*tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
-}
+}*/
 
 task("stage") {
     dependsOn("clean", war)
 }
 
-tasks.war.get().setMustRunAfter*/
+tasks.war.get().mustRunAfter("clean")
 
-/*
-tasks.get.doLast {
+tasks.register("copyToLib", Copy::class.java) {
+    into("$buildDir/server")
+    from(configurations.compile) {
+        include("webapp-runner*")
+    }
+}
+tasks.findByName("stage")!!.dependsOn("copyToLib")
+
+/*tasks["stage"].doLast {
     delete {
         fileTree("build/distributions")
     }
@@ -111,5 +117,4 @@ tasks.get.doLast {
             exclude("*.war")
         }
     }
-}
-*/
+}*/
